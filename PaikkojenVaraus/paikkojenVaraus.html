@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Teatteri KooDi</title>
+  </head>
+  <!-- Google fontin linkki -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- CSS muotoilut -->
+  <style>
+    h1 {
+      font-size: 36px;
+    }
+    body {
+      text-align: center;
+      margin-top: 25px;
+      font-family: "Cabin", sans-serif;
+    }
+    .table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .table tbody tr td:not(:first-child) {
+      border: 1px solid black;
+      border-radius: 4px;
+      width: 25px;
+      height: 25px;
+      background-color: rgb(4, 161, 4);
+      color: white;
+    }
+    .table tbody tr td:first-child {
+      font-weight: bold;
+    }
+    .table {
+      border-spacing: 10px;
+    }
+    .caption {
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+  <body>
+    <h1>Teatteri KooDi</h1>
+    <p>Varaa paikat näytökseen TuoliLeikki</p>
+    <br />
+    <h4>Anna paikan numero (1-80):</h4>
+    <!-- Syöttökenttä, jossa käyttäjältä kysytään varattavan paikan numero -->
+    <input id="paikka" />
+    <!-- Painike paikan varaamiseksi -->
+    <button class="button" onclick="varaaPaikka();">Varaa</button>
+    <br /><br />
+    <!-- tulostusalue -->
+    <div id="tulostus"></div>
+    <br />
+    <p style="color: rgb(4, 161, 4)">VIHREÄ = VAPAA</p>
+    <p style="color: rgb(255, 51, 0)">PUNAINEN = VARATTU</p>
+    <br /><br />
+    <!-- Taulukko -->
+    <table class="table" id="paikkaTaulukko">
+      <thead>
+        <caption class="caption">
+          NÄYTTÄMÖ
+        </caption>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rivi 1</td>
+          <td id="p1">1</td>
+          <td id="p2">2</td>
+          <td id="p3">3</td>
+          <td id="p4">4</td>
+          <td id="p5">5</td>
+          <td id="p6">6</td>
+          <td id="p7">7</td>
+          <td id="p8">8</td>
+          <td id="p9">9</td>
+          <td id="p10">10</td>
+        </tr>
+        <tr>
+          <td>Rivi 2</td>
+          <td id="p11">11</td>
+          <td id="p12">12</td>
+          <td id="p13">13</td>
+          <td id="p14">14</td>
+          <td id="p15">15</td>
+          <td id="p16">16</td>
+          <td id="p17">17</td>
+          <td id="p18">18</td>
+          <td id="p19">19</td>
+          <td id="p20">20</td>
+        </tr>
+        <tr>
+          <td>Rivi 3</td>
+          <td id="p21">21</td>
+          <td id="p22">22</td>
+          <td id="p23">23</td>
+          <td id="p24">24</td>
+          <td id="p25">25</td>
+          <td id="p26">26</td>
+          <td id="p27">27</td>
+          <td id="p28">28</td>
+          <td id="p29">29</td>
+          <td id="p30">30</td>
+        </tr>
+        <tr>
+          <td>Rivi 4</td>
+          <td id="p31">31</td>
+          <td id="p32">32</td>
+          <td id="p33">33</td>
+          <td id="p34">34</td>
+          <td id="p35">35</td>
+          <td id="p36">36</td>
+          <td id="p37">37</td>
+          <td id="p38">38</td>
+          <td id="p39">39</td>
+          <td id="p40">40</td>
+        </tr>
+        <tr>
+          <td>Rivi 5</td>
+          <td id="p41">41</td>
+          <td id="p42">42</td>
+          <td id="p43">43</td>
+          <td id="p44">44</td>
+          <td id="p45">45</td>
+          <td id="p46">46</td>
+          <td id="p47">47</td>
+          <td id="p48">48</td>
+          <td id="p49">49</td>
+          <td id="p50">50</td>
+        </tr>
+        <tr>
+          <td>Rivi 6</td>
+          <td id="p51">51</td>
+          <td id="p52">52</td>
+          <td id="p53">53</td>
+          <td id="p54">54</td>
+          <td id="p55">55</td>
+          <td id="p56">56</td>
+          <td id="p57">57</td>
+          <td id="p58">58</td>
+          <td id="p59">59</td>
+          <td id="p60">60</td>
+        </tr>
+        <tr>
+          <td>Rivi 7</td>
+          <td id="p61">61</td>
+          <td id="p62">62</td>
+          <td id="p63">63</td>
+          <td id="p64">64</td>
+          <td id="p65">65</td>
+          <td id="p66">66</td>
+          <td id="p67">67</td>
+          <td id="p68">68</td>
+          <td id="p69">69</td>
+          <td id="p70">70</td>
+        </tr>
+        <tr>
+          <td>Rivi 8</td>
+          <td id="p71">71</td>
+          <td id="p72">72</td>
+          <td id="p73">73</td>
+          <td id="p74">74</td>
+          <td id="p75">75</td>
+          <td id="p76">76</td>
+          <td id="p77">77</td>
+          <td id="p78">78</td>
+          <td id="p79">79</td>
+          <td id="p80">80</td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="paikkojenVaraus.mjs"></script>
+  </body>
+</html>
