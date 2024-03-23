@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vuosi 95</title>
+    <script src="syntymavuosi.mjs"></script>
+  </head>
+  <body>
+    Anna henkilötunnus: <input id="hetu" /> <br /><br />
+    <button onclick="tulosta();">Tarkista</button>
+    <br /><br />
+    <div id="tulostus"></div>
+    <script>
+      function tulosta() {
+        //haetaan käyttäjän syöttämä arvo
+        let ht = document.getElementById("hetu").value;
+        //kutsutaan funktiota ehtolauseessa ja tulostetaan
+        if (hetunTarkistus(ht)) {
+          document.getElementById("tulostus").innerHTML =
+            "Syntynyt ennen vuotta 1995.";
+        } else {
+          document.getElementById("tulostus").innerHTML =
+            "Syntynyt vuonna 1995 tai sen jälkeen.";
+        }
+      }
+    </script>
+  </body>
+</html>
