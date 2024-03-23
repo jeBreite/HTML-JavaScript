@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Palkkalaskuri</title>
+    <script src="palkkalaskuri.mjs"></script>
+  </head>
+  <style>
+    body {
+      color: rgb(84, 136, 233);
+      background: rgb(234, 242, 255);
+    }
+    .button {
+      color: white;
+      background-color: rgb(84, 136, 233);
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+    input {
+      padding: 4px 4px;
+      outline: none;
+      border: 1px solid rgb(84, 136, 233);
+      border-radius: 4px;
+    }
+    div {
+      color: black;
+    }
+  </style>
+  <body>
+    <h1>Palkkalaskuri</h1>
+    Anna tunnit: <input id="tunnit" /> <br /><br />
+    Anna tuntipalkka: <input id="tuntipalkka" /> <br /><br />
+    <button class="button" onclick="tulostaPalkka();">Laske palkka</button>
+    <br /><br />
+    <div id="tulostus"></div>
+    <script>
+      // napin painallus käynnistää funktion
+      function tulostaPalkka() {
+        // haetaan käyttäjän antamat tiedot lomakkeelta ja annetaan arvoiksi oliolle palkka
+        palkka.tunnit = document.getElementById("tunnit").value;
+        palkka.tuntipalkka = document.getElementById("tuntipalkka").value;
+        // tulostetaan
+        document.getElementById("tulostus").innerHTML = palkka.laskePalkka();
+      }
+      /*toinen versio
+            function tulostaPalkka() {
+                let tunnit = document.getElementById("tunnit").value;
+                let tuntipalkka = document.getElementById("tuntipalkka").value;
+                let palkka = new Palkkalaskuri(tunnit,tuntipalkka);
+                //tulostetaan 
+                document.getElementById("tulostus").innerHTML = "Kokonaispalkka " + (palkka.laskePalkka()) + " €";
+    } */
+    </script>
+  </body>
+</html>
