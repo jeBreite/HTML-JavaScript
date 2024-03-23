@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Asunnot</title>
+    <script src="asuntoRekisteri.mjs"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Harmattan:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      color: rgb(71, 160, 86);
+      font-family: "Harmattan", sans-serif;
+      font-size: 20px;
+    }
+    .button {
+      font-family: "Harmattan", sans-serif;
+      font-size: 16px;
+      color: white;
+      background-color: rgb(71, 160, 86);
+      padding: 4px 14px;
+      border-radius: 4px;
+    }
+    input {
+      width: 200px;
+      font-size: 16px;
+      font-family: "Harmattan", sans-serif;
+      padding: 1px 2px;
+      outline: none;
+      border: 1px solid rgb(71, 160, 86);
+      border-radius: 4px;
+    }
+    div {
+      font-family: "Harmattan", sans-serif;
+      font-size: 20px;
+      color: black;
+    }
+  </style>
+  <body>
+    <h1>Anna asunnon tiedot:</h1>
+    Kohdenumero: <input id="kohdeNro" /><br /><br />
+    Osoite: <input id="osoite" /><br /><br />
+    Hinta (€): <input id="hinta" /><br /><br />
+    Pinta-ala (m2): <input id="pintaAla" /><br /><br />
+
+    <button class="button" onclick="lisaaAsunto();">Lisää</button> <br /><br />
+    <div id="tulostus"></div>
+    <br />
+
+    Hae asuntoa kohdenumerolla: <input id="haku" /><br /><br />
+    <button class="button" onclick="haeAsunto();">Hae</button><br /><br />
+    <div id="tulostus2"></div>
+
+    <script>
+      //alustetaan taulukko
+      var asunnot = [];
+      // lisätään asunto listalle ja tulostetaan käyttäjälle tieto lisäyksestä
+      function lisaaAsunto() {
+        let kohdeNro = Number(document.getElementById("kohdeNro").value);
+        let osoite = document.getElementById("osoite").value;
+        let hinta = Number(document.getElementById("hinta").value);
+        let pintaAla = Number(document.getElementById("pintaAla").value);
+        //luodaan olio konstruktorin avulla
+        let asunto = new AsuntoMuodostin(kohdeNro, osoite, hinta, pintaAla);
+        //lisätään olio taulukkoon
+        asunnot.push(asunto);
+        //tulostetaan käyttäjälle tieto tallennuksesta
+        document.getElementById("tulostus").innerHTML =
+          "Asunto kohdenumerolla " + asunto.kn + " tallennettiin.";
+        //tekovaiheen aputulostuksia
+        console.log(asunto.laskeNelioHinta());
+        console.log(asunnot);
+      }
+      function haeAsunto() {
+        //haetaan haluttu kohdenumero lomakkeelta
+        let hakuNro = Number(document.getElementById("haku").value);
+        //kutsutaan funktiota joka käy taulukon läpi ja hakee kohdenumeron perusteella oikean kohteen
+        let haettuAsunto = kayLapiAsunnot(asunnot, "kn", hakuNro);
+        //virheviesti jos haettua kohdenumeroa ei löydy
+        if (haettuAsunto == -1) {
+          document.getElementById("tulostus2").innerHTML =
+            "Haettua kohdenumeroa ei löydy.";
+        } else {
+          //tulostetaan haetun asunnon tiedot
+          document.getElementById("tulostus2").innerHTML =
+            "Kohdenumero: " +
+            haettuAsunto.kn +
+            "<br/>" +
+            "Osoite: " +
+            haettuAsunto.os +
+            "<br/>" +
+            "Hinta: " +
+            haettuAsunto.ht +
+            " €" +
+            "<br/>" +
+            "Pinta-ala: " +
+            haettuAsunto.pa +
+            " m2" +
+            "<br/>" +
+            "Neliöhinta: " +
+            haettuAsunto.laskeNelioHinta().toFixed(2) +
+            " €/m2";
+        }
+        //aputulostus
+        console.log(haettuAsunto);
+      }
+    </script>
+  </body>
+</html>
